@@ -1,26 +1,38 @@
 "use strict";
 
-//let and const in action
-var maxItems = 30;
-if (true) {
-    var value = "blue";
-} else {
-    console.log("No value Here");
-}
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-//Coversion to IIFE
-var funcs = [];
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _loop = function _loop(i) {
-    funcs.push(function () {
-        console.log(i);
-    });
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-for (var i = 0; i < 10; i++) {
-    _loop(i);
-}
+var PersonClass = function () {
 
-funcs.forEach(function (func) {
-    func(); // outputs 0, then 1, then 2, up to 9
-});
+    // equivalent of the PersonType constructor
+
+    function PersonClass(name) {
+        _classCallCheck(this, PersonClass);
+
+        this.name = name;
+    }
+
+    // equivalent of PersonType.prototype.sayName
+
+    _createClass(PersonClass, [{
+        key: "sayName",
+        value: function sayName() {
+            console.log(this.name);
+        }
+    }]);
+
+    return PersonClass;
+}();
+
+var person = new PersonClass("Nicholas");
+person.sayName(); // outputs "Nicholas"
+
+console.log(person instanceof PersonClass); // true
+console.log(person instanceof Object); // true
+
+console.log(typeof PersonClass === "undefined" ? "undefined" : _typeof(PersonClass)); // "function"
+console.log(_typeof(PersonClass.prototype.sayName)); // "function"

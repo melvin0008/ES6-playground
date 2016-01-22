@@ -55,4 +55,34 @@ var add = new Function("first", "second", "return first + second");
 
 console.log(add(1, 1));     // 2
 
+//Function name property
 
+var doSomething = function doSomethingElse() {
+    // ...
+};
+
+var person = {
+    get firstName() {
+        return "Nicholas"
+    },
+    sayName: function() {
+        console.log(this.name);
+    }
+}
+
+console.log(doSomething.name);      // "doSomethingElse"
+console.log(person.sayName.name);   // "sayName"
+console.log(person.firstName.name); // "get firstName"
+
+
+//Special Cases of name property
+var doSomething = function() {
+    // ...
+};
+
+console.log(doSomething.bind().name);   // "bound doSomething"
+
+console.log((new Function()).name);     // "anonymous"
+
+
+//new.target function to check whether a function was called with the keywor new or not. Can also be used to check the construtor
